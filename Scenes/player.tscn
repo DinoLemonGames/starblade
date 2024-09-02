@@ -1,0 +1,87 @@
+[gd_scene load_steps=7 format=3 uid="uid://141rfftvrpf6"]
+
+[ext_resource type="Script" path="res://Scripts/character_body_3d.gd" id="1_wr6lr"]
+[ext_resource type="PackedScene" uid="uid://d2js36qm6cy8i" path="res://Scenes/ex_213.tscn" id="2_8f74a"]
+[ext_resource type="Texture2D" uid="uid://crc680hb50bau" path="res://Textures/recticle1.png" id="3_t05t0"]
+[ext_resource type="Texture2D" uid="uid://dtpfm2w317kcm" path="res://Textures/recticle2.png" id="4_kxuqt"]
+[ext_resource type="Script" path="res://Scenes/gun.gd" id="5_51un3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i6k78"]
+size = Vector3(3.35599, 1.60815, 3.86841)
+
+[node name="Player" type="Node3D"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." node_paths=PackedStringArray("camera", "player", "origin")]
+script = ExtResource("1_wr6lr")
+camera = NodePath("../Camera3D")
+player = NodePath("..")
+origin = NodePath("CollisionShape/ShipOrigin")
+
+[node name="CollisionShape" type="CollisionShape3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.62939e-05, 2.24882, -1.04871)
+shape = SubResource("BoxShape3D_i6k78")
+
+[node name="ShipOrigin" type="Node3D" parent="CharacterBody3D/CollisionShape"]
+
+[node name="EX-213" parent="CharacterBody3D/CollisionShape/ShipOrigin" instance=ExtResource("2_8f74a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.62939e-05, -2.24882, 1.04871)
+
+[node name="Gun1" type="Node3D" parent="CharacterBody3D/CollisionShape/ShipOrigin/EX-213"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.253605, 1.87339, 10.7394)
+script = ExtResource("5_51un3")
+
+[node name="Gun2" type="Node3D" parent="CharacterBody3D/CollisionShape/ShipOrigin/EX-213"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.250397, 1.87339, 10.7394)
+script = ExtResource("5_51un3")
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="CharacterBody3D/CollisionShape/ShipOrigin/EX-213"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.76566e-05, 2.25263, -2.74815)
+light_color = Color(0.999974, 0.641765, 0.586674, 1)
+light_energy = 0.05
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+light_specular = 0.0
+omni_range = 0.757
+omni_attenuation = 2.0
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="CharacterBody3D/CollisionShape/ShipOrigin/EX-213"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2935, 2.36483, -3.44043)
+light_color = Color(0.999974, 0.641765, 0.586674, 1)
+light_energy = 0.05
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+omni_range = 0.31
+
+[node name="OmniLight3D5" type="OmniLight3D" parent="CharacterBody3D/CollisionShape/ShipOrigin/EX-213"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.31995, 2.36483, -3.44043)
+light_color = Color(0.999974, 0.641765, 0.586674, 1)
+light_energy = 0.05
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+omni_range = 0.324
+
+[node name="recticle_close" type="Sprite3D" parent="CharacterBody3D/CollisionShape/ShipOrigin/EX-213"]
+transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, -9.23942e-07, 1.8402, 21.8199)
+layers = 2
+billboard = 1
+double_sided = false
+texture = ExtResource("3_t05t0")
+
+[node name="recticle_far" type="Sprite3D" parent="CharacterBody3D/CollisionShape/ShipOrigin/EX-213"]
+transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, -3.33279e-06, 1.8402, 43.5432)
+layers = 2
+billboard = 1
+texture = ExtResource("4_kxuqt")
+
+[node name="Timer" type="Timer" parent="CharacterBody3D"]
+wait_time = 0.5
+one_shot = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-1, 6.2505e-09, -8.7199e-08, 0, 0.997441, 0.0714974, 8.74228e-08, 0.0714974, -0.997441, 0, 3.55395, -15.1604)
+current = true
+fov = 58.0
+far = 80000.0
+
+[connection signal="timeout" from="CharacterBody3D/Timer" to="CharacterBody3D" method="_on_timer_timeout"]

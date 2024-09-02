@@ -1,0 +1,125 @@
+[gd_scene load_steps=10 format=3 uid="uid://bxnf82fop7b8"]
+
+[ext_resource type="Texture2D" uid="uid://dqnmxeu5moxao" path="res://Textures/TCom_Ground_CliffEarth_header.jpg" id="1_jhi2i"]
+[ext_resource type="ArrayMesh" uid="uid://bkqn0otaj6ssq" path="res://Models/Lowpolycity.obj" id="2_841qa"]
+[ext_resource type="Texture2D" uid="uid://dh4rldcewx4k6" path="res://Textures/TCom_Concrete_Ceiling4_header.jpg" id="3_dslva"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_823eg"]
+albedo_texture = ExtResource("1_jhi2i")
+metallic_specular = 0.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_8mc0g"]
+material = SubResource("StandardMaterial3D_823eg")
+radius = 2000.0
+height = 4000.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x67gt"]
+albedo_texture = ExtResource("3_dslva")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ckbps"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a337f"]
+albedo_texture = ExtResource("3_dslva")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jpwld"]
+albedo_texture = ExtResource("3_dslva")
+
+[node name="ArcturusPlanet" type="MeshInstance3D"]
+transform = Transform3D(0.149814, -0.461081, 0.87462, 0.951057, 0.309017, 0, -0.270272, 0.831813, 0.48481, 0, 0, 0)
+mesh = SubResource("SphereMesh_8mc0g")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.29482, 0.955338, 0.0202817, -0.936553, 0.293104, -0.192248, -0.189606, 0.0376837, 0.981137, 1901.27, 638.078, 32.5899)
+mesh = ExtResource("2_841qa")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.29482, 0.945891, -0.135543, -0.936553, 0.257889, -0.237407, -0.189606, 0.196936, 0.961908, 1883.2, 554.446, 421.997)
+material_override = SubResource("StandardMaterial3D_x67gt")
+mesh = ExtResource("2_841qa")
+surface_material_override/0 = SubResource("StandardMaterial3D_ckbps")
+
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.230909, 0.949644, -0.211794, -0.685749, 0.313264, 0.656974, 0.690239, -0.006464, 0.723553, 1910.12, 659.661, -63.5998)
+material_override = SubResource("StandardMaterial3D_x67gt")
+mesh = ExtResource("2_841qa")
+surface_material_override/0 = SubResource("StandardMaterial3D_ckbps")
+
+[node name="MeshInstance3D14" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.142891, 0.960374, -0.2393, -0.712464, 0.267636, 0.648665, 0.687006, 0.077804, 0.722474, 1913.27, 566.688, 401.608)
+material_override = SubResource("StandardMaterial3D_x67gt")
+mesh = ExtResource("2_841qa")
+surface_material_override/0 = SubResource("StandardMaterial3D_ckbps")
+
+[node name="MeshInstance3D13" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.190164, 0.978437, -0.0806134, -0.697228, 0.192403, 0.690547, 0.691167, -0.0751111, 0.718782, 1998.53, 267.334, -137.097)
+material_override = SubResource("StandardMaterial3D_x67gt")
+mesh = ExtResource("2_841qa")
+surface_material_override/0 = SubResource("StandardMaterial3D_ckbps")
+
+[node name="MeshInstance3D11" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.273108, 0.896731, -0.348259, -0.667696, 0.43732, 0.60244, 0.692528, 0.0679992, 0.718179, 1735.52, 1048.97, 53.4447)
+material_override = SubResource("StandardMaterial3D_x67gt")
+mesh = ExtResource("2_841qa")
+surface_material_override/0 = SubResource("StandardMaterial3D_ckbps")
+
+[node name="MeshInstance3D12" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.227473, 0.952875, -0.200711, -0.686932, 0.303111, 0.660492, 0.690204, -0.0123698, 0.723509, 1861.5, 693.753, -331.916)
+material_override = SubResource("StandardMaterial3D_x67gt")
+mesh = ExtResource("2_841qa")
+surface_material_override/0 = SubResource("StandardMaterial3D_ckbps")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.29482, 0.946355, 0.132264, -0.936553, 0.313641, -0.156519, -0.189606, -0.0777271, 0.978779, 1867.28, 705.371, -348.25)
+mesh = ExtResource("2_841qa")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.0943733, 0.99533, 0.0202818, -0.976589, 0.0965135, -0.192247, -0.193308, -0.0016638, 0.981137, 1989.68, 219.511, -51.2534)
+mesh = ExtResource("2_841qa")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.16043, 0.97225, -0.170268, -0.969558, 0.122896, -0.211787, -0.184985, 0.199062, 0.962369, 1979.96, 138.769, 337.772)
+mesh = ExtResource("2_841qa")
+surface_material_override/0 = SubResource("StandardMaterial3D_a337f")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.191684, 0.95325, 0.233605, -0.96452, 0.22699, -0.134821, -0.181544, -0.199474, 0.962939, 1952.17, 285.725, -432.232)
+mesh = ExtResource("2_841qa")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.482944, 0.875416, -0.0202817, 0.857373, 0.477444, 0.192248, 0.17798, 0.075456, -0.981137, 1729.17, 1046.16, 123.238)
+mesh = ExtResource("2_841qa")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.435605, 0.871499, -0.22525, 0.882123, 0.463119, 0.0859065, 0.179185, -0.161277, -0.970506, 1685.8, 1110.95, -268.593)
+mesh = ExtResource("2_841qa")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.395024, 0.899513, 0.186633, 0.902134, 0.341451, 0.263753, 0.173523, 0.272557, -0.946363, 1707.87, 961.904, 501.896)
+mesh = ExtResource("2_841qa")
+surface_material_override/0 = SubResource("StandardMaterial3D_jpwld")
+surface_material_override/1 = SubResource("StandardMaterial3D_jpwld")
+surface_material_override/2 = SubResource("StandardMaterial3D_jpwld")
+surface_material_override/3 = SubResource("StandardMaterial3D_jpwld")
+surface_material_override/4 = SubResource("StandardMaterial3D_jpwld")
+surface_material_override/5 = SubResource("StandardMaterial3D_jpwld")
+surface_material_override/6 = SubResource("StandardMaterial3D_jpwld")
+surface_material_override/7 = SubResource("StandardMaterial3D_jpwld")
+surface_material_override/8 = SubResource("StandardMaterial3D_jpwld")
+surface_material_override/9 = SubResource("StandardMaterial3D_jpwld")
+surface_material_override/10 = SubResource("StandardMaterial3D_jpwld")
+surface_material_override/11 = SubResource("StandardMaterial3D_jpwld")
+surface_material_override/12 = SubResource("StandardMaterial3D_jpwld")
+surface_material_override/13 = SubResource("StandardMaterial3D_jpwld")
+surface_material_override/14 = SubResource("StandardMaterial3D_jpwld")
+surface_material_override/15 = SubResource("StandardMaterial3D_jpwld")
+surface_material_override/16 = SubResource("StandardMaterial3D_jpwld")
+surface_material_override/17 = SubResource("StandardMaterial3D_jpwld")
+surface_material_override/18 = SubResource("StandardMaterial3D_jpwld")
+surface_material_override/19 = SubResource("StandardMaterial3D_jpwld")
+surface_material_override/20 = SubResource("StandardMaterial3D_jpwld")
+surface_material_override/21 = SubResource("StandardMaterial3D_jpwld")
+surface_material_override/22 = SubResource("StandardMaterial3D_jpwld")
+surface_material_override/23 = SubResource("StandardMaterial3D_jpwld")
+surface_material_override/24 = SubResource("StandardMaterial3D_jpwld")
+surface_material_override/25 = SubResource("StandardMaterial3D_jpwld")
+surface_material_override/26 = SubResource("StandardMaterial3D_jpwld")

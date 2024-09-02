@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2js36qm6cy8i"]
+
+[ext_resource type="PackedScene" uid="uid://c77sh24543rxj" path="res://Models/EX-213.obj" id="1_kghnl"]
+[ext_resource type="Texture2D" uid="uid://1lsmcwdrqe65" path="res://Models/EX-213_texture.png" id="2_j1mdt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lv6qb"]
+albedo_texture = ExtResource("2_j1mdt")
+rim = 0.23
+
+[node name="EX-213" instance=ExtResource("1_kghnl")]
+
+[node name="MainBody" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_lv6qb")

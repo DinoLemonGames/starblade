@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://pt1yb8bgmkvd"]
+
+[ext_resource type="Texture2D" uid="uid://b8abyp3fgb132" path="res://Textures/TCom_Ground_ForestMoss01_header.jpg" id="1_uupg0"]
+
+[resource]
+albedo_texture = ExtResource("1_uupg0")
