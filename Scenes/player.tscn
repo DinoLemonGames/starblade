@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://Scripts/character_body_3d.gd" id="1_wr6lr"]
 [ext_resource type="PackedScene" uid="uid://d2js36qm6cy8i" path="res://Scenes/ex_213.tscn" id="2_8f74a"]
+[ext_resource type="Script" path="res://Scenes/ex_213.gd" id="3_nhvuv"]
 [ext_resource type="Texture2D" uid="uid://crc680hb50bau" path="res://Textures/recticle1.png" id="3_t05t0"]
 [ext_resource type="Texture2D" uid="uid://dtpfm2w317kcm" path="res://Textures/recticle2.png" id="4_kxuqt"]
-[ext_resource type="Script" path="res://Scenes/gun.gd" id="5_51un3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i6k78"]
 size = Vector3(3.35599, 1.60815, 3.86841)
@@ -26,14 +26,13 @@ shape = SubResource("BoxShape3D_i6k78")
 
 [node name="EX-213" parent="CharacterBody3D/CollisionShape/ShipOrigin" instance=ExtResource("2_8f74a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.62939e-05, -2.24882, 1.04871)
+script = ExtResource("3_nhvuv")
 
 [node name="Gun1" type="Node3D" parent="CharacterBody3D/CollisionShape/ShipOrigin/EX-213"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.253605, 1.87339, 10.7394)
-script = ExtResource("5_51un3")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1.873, 10.739)
 
 [node name="Gun2" type="Node3D" parent="CharacterBody3D/CollisionShape/ShipOrigin/EX-213"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.250397, 1.87339, 10.7394)
-script = ExtResource("5_51un3")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1.873, 10.739)
 
 [node name="CenterEngineLight" type="OmniLight3D" parent="CharacterBody3D/CollisionShape/ShipOrigin/EX-213"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.76566e-05, 2.25263, -2.74815)

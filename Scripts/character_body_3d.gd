@@ -6,7 +6,7 @@ extends CharacterBody3D
 
 const MAXSPEED = 50.0
 const ACCELERATION = 1.0
-const BOOSTSPEED = 75.0
+const BOOSTSPEED = 125.5
 
 # This gets set to BOOSTSPEED when you hit boost button
 var boost = 0.0
@@ -44,7 +44,7 @@ func _physics_process(delta):
 		if not Input.is_action_pressed("roll_left") and not Input.is_action_pressed("roll_right"):
 			roll_angle = lerp(float(roll_angle), 0.0, float(ROLLSPEED))
 	
-	print(roll_angle)
+	print(origin.rotation_degrees.z)
 	
 	# Barrel Roll RIGHT
 	if Input.is_action_just_pressed("roll_right"):
