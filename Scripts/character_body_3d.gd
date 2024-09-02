@@ -4,17 +4,21 @@ extends CharacterBody3D
 @export var player: Node
 @export var origin: Node
 
-const MAXSPEED = 50
-const ACCELERATION = 1
-const BOOSTSPEED = 25
+const MAXSPEED = 50.0
+const ACCELERATION = 1.0
+const BOOSTSPEED = 75.0
 
 # This gets set to BOOSTSPEED when you hit boost button
-var boost = 0
+var boost = 0.0
 
 # Roll angle - This changes when you want to manually roll your ship
 var roll_angle = 0.0
 const MAXROLLANGLE = 85.0
 const ROLLSPEED = 0.09
+# Barrel Rolling or not
+var rrolling = false
+var lrolling = false
+var can_roll = true
 
 var input_vector = Vector3()
 
@@ -29,22 +33,51 @@ func _physics_process(delta):
 	
 	# Rotate the ship
 	# Roll Left and Right
-	origin.rotation_degrees.z = clamp((velocity.x * -1.5) + roll_angle, -MAXROLLANGLE, MAXROLLANGLE)
+	origin.rotation_degrees.z = (velocity.x * -1.5) + roll_angle
+	if not rrolling and not lrolling:
+		# Manual rolling
+		if Input.is_action_pressed("roll_right"):
+			roll_angle = lerp(roll_angle, MAXROLLANGLE * Input.get_action_strength("roll_right"), ROLLSPEED)
+		if Input.is_action_pressed("roll_left"):
+			roll_angle = lerp(roll_angle, -MAXROLLANGLE * Input.get_action_strength("roll_left"), ROLLSPEED)
+		# Back to Center
+		if not Input.is_action_pressed("roll_left") and not Input.is_action_pressed("roll_right"):
+			roll_angle = lerp(float(roll_angle), 0.0, float(ROLLSPEED))
 	
-	if Input.is_action_pressed("roll_right"):
-		roll_angle = lerp(roll_angle, MAXROLLANGLE * Input.get_action_strength("roll_right"), ROLLSPEED)
-	if Input.is_action_pressed("roll_left"):
-		roll_angle = lerp(roll_angle, -MAXROLLANGLE * Input.get_action_strength("roll_left"), ROLLSPEED)
-	if not Input.is_action_pressed("roll_left") and not Input.is_action_pressed("roll_right"):
-		roll_angle = lerp(roll_angle, 0.0, ROLLSPEED)
-	print(Input.get_action_strength("roll_right"))
-	# Up and Down
+	print(roll_angle)
+	
+	# Barrel Roll RIGHT
+	if Input.is_action_just_pressed("roll_right"):
+		if $BarrelRollTimer.is_stopped():
+			$BarrelRollTimer.start()
+		else:
+			if Input.is_action_just_pressed("roll_right"):
+				$BarrelRollTimer.stop()
+				if can_roll and not lrolling:
+					rrolling = true
+	if rrolling:
+		barrel_rroll()
+	# Barrel Roll LEFT
+	if Input.is_action_just_pressed("roll_left"):
+		if $BarrelRollTimer.is_stopped():
+			$BarrelRollTimer.start()
+		else:
+			if Input.is_action_just_pressed("roll_left"):
+				$BarrelRollTimer.stop()
+				if can_roll and not rrolling:
+					lrolling = true
+	if lrolling:
+		barrel_lroll()
+			
+	
+	# Up and Down Rotation
 	origin.rotation_degrees.x = velocity.y * -1
-	# Left and Right
+	# Left and Right Rotation
 	origin.rotation_degrees.y = velocity.x * 1.5
 	
 	# Boosting
 	if Input.is_action_just_pressed("boost"):
+		print("BOOST")
 		boost = BOOSTSPEED
 		$Timer.start()
 	
@@ -68,17 +101,43 @@ func _physics_process(delta):
 	var bottom_clamp = 13
 	var top_clamp = -6
 	# Left and Right
-	#camera.rotation_degrees.y = clamp((player.position.x - position.x/4)+180, right_clamp, left_clamp)
 	camera.rotation_degrees.y = ((player.position.x - position.x)/4)+180
 	# Up and Down
-	#camera.rotation_degrees.x = clamp((player.position.y - position.y/4), top_clamp, bottom_clamp)
 	camera.rotation_degrees.x = (player.position.y - position.y)/4
-	# Roll Left and Right
-	#camera.rotation_degrees.z = rotation_degrees.z / -5
-	
-	#camera.position.x = clamp(camera.position.x, player.position.x - 4, player.position.x + 4)
-	#camera.position.y = clamp(camera.position.y, player.position.y - 2, player.position.y + 2)
-
 
 func _on_timer_timeout():
-	boost = 0
+	boost = 0.0
+
+func barrel_rroll():
+	if rrolling:
+		if roll_angle <= 360.0:
+			roll_angle = lerp(roll_angle, 380.0, 0.1)
+			boost = BOOSTSPEED
+		else:
+			roll_angle = 0.0
+			boost = 0.0
+			can_roll = false
+			$RollCooldownTimer.start()
+			rrolling = false
+
+func barrel_lroll():
+	if lrolling:
+		if roll_angle >= -360.0:
+			roll_angle = lerp(roll_angle, -380.0, 0.1)
+			boost = BOOSTSPEED
+		else:
+			roll_angle = 0.0
+			boost = 0.0
+			can_roll = false
+			$RollCooldownTimer.start()
+			lrolling = false
+
+
+func _on_roll_cooldown_timer_timeout():
+	can_roll = true
+	$"CollisionShape/ShipOrigin/EX-213/OmniLight3D".light_energy = 10
+	$RollRechargedFlashTimer.start()
+
+
+func _on_roll_recharged_flash_timer_timeout():
+	$"CollisionShape/ShipOrigin/EX-213/OmniLight3D".light_energy = 0
