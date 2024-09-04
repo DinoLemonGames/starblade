@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://141rfftvrpf6"]
+[gd_scene load_steps=8 format=3 uid="uid://141rfftvrpf6"]
 
 [ext_resource type="Script" path="res://Scripts/character_body_3d.gd" id="1_wr6lr"]
+[ext_resource type="Script" path="res://Scenes/player_attachment.gd" id="1_ys6et"]
 [ext_resource type="PackedScene" uid="uid://d2js36qm6cy8i" path="res://Scenes/ex_213.tscn" id="2_8f74a"]
 [ext_resource type="Script" path="res://Scenes/ex_213.gd" id="3_nhvuv"]
 [ext_resource type="Texture2D" uid="uid://crc680hb50bau" path="res://Textures/recticle1.png" id="3_t05t0"]
@@ -10,13 +11,14 @@
 size = Vector3(3.35599, 1.60815, 3.86841)
 
 [node name="Player" type="Node3D"]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 
-[node name="PlayerAttachment" type="Node3D" parent="."]
+[node name="PlayerAttachment" type="Node3D" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("1_ys6et")
+player = NodePath("..")
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="PlayerAttachment" node_paths=PackedStringArray("camera", "player", "origin")]
 script = ExtResource("1_wr6lr")
-camera = NodePath("../../Camera3D")
+camera = NodePath("../Camera3D")
 player = NodePath("../..")
 origin = NodePath("CollisionShape/ShipOrigin")
 
@@ -93,7 +95,7 @@ one_shot = true
 wait_time = 0.1
 one_shot = true
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="PlayerAttachment"]
 transform = Transform3D(-1, 6.2505e-09, -8.71991e-08, 0, 0.997441, 0.0714974, 8.74228e-08, 0.0714974, -0.997441, 0, 3.554, -16)
 current = true
 fov = 58.0

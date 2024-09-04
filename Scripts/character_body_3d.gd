@@ -72,6 +72,7 @@ func _physics_process(delta):
 	# Left and Right Rotation
 	origin.rotation_degrees.y = clamp(velocity.x * y_rotation_mod, -YCLAMP, YCLAMP)
 	
+	print(position.z)
 	#print("Velocity X: " + str(velocity.x))
 	#print("Velocity Y: " + str(velocity.y))
 	
