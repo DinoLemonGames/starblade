@@ -41,11 +41,6 @@ func _physics_process(delta):
 	# Limit Length makes it so keyboard and controller inputs are the same
 	input_vector  = Input.get_vector("right", "left", "down", "up").limit_length(.75)
 	
-	# Set the velocity
-	#if abs(velocity.x) < 70 or abs(velocity.y) < 70: 
-		#velocity.x = lerp(velocity.x, input_vector.x * (MAXSPEED + boost), ACCELERATION)
-		#velocity.y = lerp(velocity.y, input_vector.y * (MAXSPEED + boost), ACCELERATION)
-	#else:
 	velocity.x = clamp(lerp(velocity.x, input_vector.x * (MAXSPEED + boost), ACCELERATION), -speed_clamp, speed_clamp)
 	velocity.y = clamp(lerp(velocity.y, input_vector.y * (MAXSPEED + boost), ACCELERATION), -speed_clamp, speed_clamp)
 		
@@ -77,8 +72,8 @@ func _physics_process(delta):
 	# Left and Right Rotation
 	origin.rotation_degrees.y = clamp(velocity.x * y_rotation_mod, -YCLAMP, YCLAMP)
 	
-	print("Velocity X: " + str(velocity.x))
-	print("Velocity Y: " + str(velocity.y))
+	#print("Velocity X: " + str(velocity.x))
+	#print("Velocity Y: " + str(velocity.y))
 	
 	# Barrel Roll RIGHT
 	if Input.is_action_just_pressed("roll_right"):
@@ -110,13 +105,13 @@ func _physics_process(delta):
 	# Left | Right
 	transform.origin.x = clamp(transform.origin.x, -40, 40)
 	# Bottom | Top
-	transform.origin.y = clamp(transform.origin.y, -25, 24)
+	transform.origin.y = clamp(transform.origin.y, -24, 23)
 	
 	# Make the camera follow the ship
 	# Left and Right
 	camera.position.x = lerp(player.position.x, player.position.x + position.x, 0.75)
 	# Up and Down
-	camera.position.y = lerp(player.position.y, (player.position.y + position.y)+3, 0.9)
+	camera.position.y = lerp(player.position.y, (player.position.y + position.y)+3, 0.75)
 	camera.position.y = clamp(camera.position.y, player.position.y -15, 18)
 	
 	# Make the camera look at the ship
@@ -124,9 +119,6 @@ func _physics_process(delta):
 	camera.rotation_degrees.y = ((player.position.x - position.x)/20)+180
 	# Up and Down
 	camera.rotation_degrees.x = (player.position.y - position.y)/20
-
-func _on_timer_timeout():
-	boost = 0.0
 
 func barrel_rroll():
 	if rrolling:
