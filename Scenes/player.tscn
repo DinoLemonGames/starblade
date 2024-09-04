@@ -79,16 +79,12 @@ light_color = Color(0, 1, 1, 1)
 light_energy = 0.0
 light_size = 1.0
 
-[node name="Timer" type="Timer" parent="CharacterBody3D"]
-wait_time = 0.5
-one_shot = true
-
 [node name="BarrelRollTimer" type="Timer" parent="CharacterBody3D"]
 wait_time = 0.3
 one_shot = true
 
 [node name="RollCooldownTimer" type="Timer" parent="CharacterBody3D"]
-wait_time = 0.5
+wait_time = 0.2
 one_shot = true
 
 [node name="RollRechargedFlashTimer" type="Timer" parent="CharacterBody3D"]
@@ -96,12 +92,11 @@ wait_time = 0.1
 one_shot = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-1, 6.2505e-09, -8.7199e-08, 0, 0.997441, 0.0714974, 8.74228e-08, 0.0714974, -0.997441, 0, 3.55395, -15.1604)
+transform = Transform3D(-1, 6.2505e-09, -8.71991e-08, 0, 0.997441, 0.0714974, 8.74228e-08, 0.0714974, -0.997441, 0, 3.554, -16)
 current = true
 fov = 58.0
 far = 80000.0
 
-[connection signal="timeout" from="CharacterBody3D/Timer" to="CharacterBody3D" method="_on_timer_timeout"]
 [connection signal="timeout" from="CharacterBody3D/BarrelRollTimer" to="CharacterBody3D" method="_on_barrel_roll_timer_timeout"]
 [connection signal="timeout" from="CharacterBody3D/RollCooldownTimer" to="CharacterBody3D" method="_on_roll_cooldown_timer_timeout"]
 [connection signal="timeout" from="CharacterBody3D/RollRechargedFlashTimer" to="CharacterBody3D" method="_on_roll_recharged_flash_timer_timeout"]
