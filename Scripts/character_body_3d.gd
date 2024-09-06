@@ -43,7 +43,11 @@ func _physics_process(delta):
 	
 	velocity.x = clamp(lerp(velocity.x, input_vector.x * (MAXSPEED + boost), ACCELERATION), -speed_clamp, speed_clamp)
 	velocity.y = clamp(lerp(velocity.y, input_vector.y * (MAXSPEED + boost), ACCELERATION), -speed_clamp, speed_clamp)
-		
+	
+	#print(position.z)
+	#print("Velocity X: " + str(velocity.x))
+	#print("Velocity Y: " + str(velocity.y))
+	
 	# Rotate the ship
 	# Roll Left and Right
 	if not rrolling and not lrolling:
@@ -71,10 +75,6 @@ func _physics_process(delta):
 	origin.rotation_degrees.x = clamp(velocity.y * x_rotation_mod, -XCLAMP, XCLAMP)
 	# Left and Right Rotation
 	origin.rotation_degrees.y = clamp(velocity.x * y_rotation_mod, -YCLAMP, YCLAMP)
-	
-	#print(position.z)
-	#print("Velocity X: " + str(velocity.x))
-	#print("Velocity Y: " + str(velocity.y))
 	
 	# Barrel Roll RIGHT
 	if Input.is_action_just_pressed("roll_right"):
@@ -106,14 +106,14 @@ func _physics_process(delta):
 	# Left | Right
 	transform.origin.x = clamp(transform.origin.x, -40, 40)
 	# Bottom | Top
-	transform.origin.y = clamp(transform.origin.y, -24, 23)
+	transform.origin.y = clamp(transform.origin.y, -22, 25)
 	
 	# Make the camera follow the ship
 	# Left and Right
 	camera.position.x = lerp(player.position.x, (player.position.x + position.x)-1.5, 0.75)
 	# Up and Down
 	camera.position.y = lerp(player.position.y, (player.position.y + position.y)+3.5, 0.75)
-	camera.position.y = clamp(camera.position.y, player.position.y -15, 18)
+	camera.position.y = clamp(camera.position.y, player.position.y -15, 25)
 	
 	# Make the camera look at the ship
 	# Left and Right
@@ -148,9 +148,9 @@ func barrel_lroll():
 
 func _on_roll_cooldown_timer_timeout():
 	can_roll = true
-	$"CollisionShape/ShipOrigin/EX-213/OmniLight3D".light_energy = 10
+	$"CollisionShape/ShipOrigin/EX-214/OmniLight3D".light_energy = 10
 	$RollRechargedFlashTimer.start()
 
 
 func _on_roll_recharged_flash_timer_timeout():
-	$"CollisionShape/ShipOrigin/EX-213/OmniLight3D".light_energy = 0
+	$"CollisionShape/ShipOrigin/EX-214/OmniLight3D".light_energy = 0

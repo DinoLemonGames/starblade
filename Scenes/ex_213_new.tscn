@@ -1,0 +1,28 @@
+[gd_scene load_steps=7 format=3 uid="uid://bvadkcftlq8nf"]
+
+[ext_resource type="PackedScene" uid="uid://ddr7s2p0wowax" path="res://Models/EX-213.gltf" id="1_mfcxx"]
+[ext_resource type="Shader" path="res://Scenes/src/outline.gdshader" id="2_xvbc3"]
+[ext_resource type="Shader" path="res://src/cel-shader-base.gdshader" id="3_t1vhw"]
+[ext_resource type="Texture2D" uid="uid://7jlx203rqhnp" path="res://Textures/EX-213_texture.png" id="4_du0os"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vipdi"]
+render_priority = 0
+shader = ExtResource("2_xvbc3")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_440mq"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_vipdi")
+shader = ExtResource("3_t1vhw")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/specular = Color(0.3, 0.3, 0.3, 0.5)
+shader_parameter/fresnel = Color(0.2, 0.2, 0.2, 0.3)
+shader_parameter/base_texture = ExtResource("4_du0os")
+shader_parameter/specular_texture = ExtResource("4_du0os")
+shader_parameter/fresnel_texture = ExtResource("4_du0os")
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+
+[node name="EX-214" instance=ExtResource("1_mfcxx")]
+
+[node name="EX-213" parent="Node" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_440mq")

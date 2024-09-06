@@ -1,14 +1,14 @@
 [gd_scene load_steps=10 format=3 uid="uid://ehqkod5xfkoq"]
 
 [ext_resource type="Script" path="res://Scripts/arcturus.gd" id="1_dtlb4"]
-[ext_resource type="Texture2D" uid="uid://djub3kc76kff3" path="res://Textures/Panos/XylarisPano.png" id="1_hqy7a"]
 [ext_resource type="PackedScene" uid="uid://b32exqxeaafdd" path="res://Scenes/purple_sun.tscn" id="2_4depj"]
+[ext_resource type="Texture2D" uid="uid://mbtdrmtswwdb" path="res://Textures/Panos/Epic_GloriousPink_EquiRect.png" id="2_21gvi"]
 [ext_resource type="PackedScene" uid="uid://ojurelpgurkt" path="res://Scenes/red_sun.tscn" id="3_e6g73"]
 [ext_resource type="PackedScene" uid="uid://gccxfyv33unh" path="res://Scenes/player.tscn" id="3_isfg4"]
 [ext_resource type="PackedScene" uid="uid://bxnf82fop7b8" path="res://Scenes/arcturus_planet.tscn" id="5_p5xwx"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_rnuxu"]
-panorama = ExtResource("1_hqy7a")
+panorama = ExtResource("2_21gvi")
 
 [sub_resource type="Sky" id="Sky_l6kja"]
 sky_material = SubResource("PanoramaSkyMaterial_rnuxu")
@@ -28,7 +28,10 @@ adjustment_saturation = 1.3
 [node name="Arcturus" type="Node3D"]
 script = ExtResource("1_dtlb4")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="SpaceEnvionment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_31xot")
+
+[node name="PlanetEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_31xot")
 
 [node name="PurpleSun" parent="." instance=ExtResource("2_4depj")]
@@ -53,8 +56,8 @@ light_volumetric_fog_energy = 0.0
 light_bake_mode = 1
 shadow_enabled = true
 
-[node name="ArcturusPlanet" parent="." instance=ExtResource("5_p5xwx")]
-transform = Transform3D(-0.148425, 0.978635, 0.142282, 0.984732, 0.159492, -0.0697564, -0.0909589, 0.129756, -0.987365, 108.608, -2022.91, 700)
-
 [node name="Player" parent="." instance=ExtResource("3_isfg4")]
 transform = Transform3D(0.999983, 0, 2.98018e-08, 0, 0.999999, 0, -2.98018e-08, 0, 0.999983, 1.09001, -0.00058645, 5.21492)
+
+[node name="ArcturusPlanet" parent="." instance=ExtResource("5_p5xwx")]
+transform = Transform3D(-0.148425, 0.978635, 0.142282, 0.984732, 0.159492, -0.0697564, -0.0909589, 0.129756, -0.987365, 108.608, -3000, 1577.26)

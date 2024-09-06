@@ -1,10 +1,12 @@
 [gd_scene load_steps=4 format=3 uid="uid://d2js36qm6cy8i"]
 
 [ext_resource type="PackedScene" uid="uid://c77sh24543rxj" path="res://Models/EX-213.obj" id="1_kghnl"]
-[ext_resource type="Texture2D" uid="uid://1lsmcwdrqe65" path="res://Models/EX-213_texture.png" id="2_j1mdt"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_m5cn8"]
+load_path = "res://.godot/imported/EX-213_texture.png-e62b5ee4af3f07f3e939024acde594a3.ctex"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lv6qb"]
-albedo_texture = ExtResource("2_j1mdt")
+albedo_texture = SubResource("CompressedTexture2D_m5cn8")
 rim = 0.23
 
 [node name="EX-213" instance=ExtResource("1_kghnl")]

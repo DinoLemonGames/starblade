@@ -15,11 +15,6 @@ run/main_scene="res://Scenes/arcturus.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
-[display]
-
-window/size/viewport_width=1280
-window/size/viewport_height=853
-
 [input]
 
 up={
@@ -74,3 +69,26 @@ roll_left={
 
 3d/default_gravity=0.0
 3d/default_gravity_vector=Vector3(0, 0, 0)
+
+[shader_globals]
+
+specular_smoothness={
+"type": "float",
+"value": 0.05
+}
+outline_width={
+"type": "float",
+"value": 4.0
+}
+outline_color={
+"type": "color",
+"value": Color(0, 0, 0, 1)
+}
+fresnel_smoothness={
+"type": "float",
+"value": 0.05
+}
+diffuse_curve={
+"type": "sampler2D",
+"value": "res://src/diffuse_curve_gradient.tres"
+}
