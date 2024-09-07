@@ -1,0 +1,37 @@
+[gd_scene load_steps=8 format=3 uid="uid://8c7it1ho7nwa"]
+
+[ext_resource type="Shader" path="res://src/outline.gdshader" id="1_oksl0"]
+[ext_resource type="Shader" path="res://src/cel-shader-base.gdshader" id="2_ktxwe"]
+[ext_resource type="Texture2D" uid="uid://dfxnw4itvps3w" path="res://Scenes/Astratela System/isoth_texture1.jpg" id="3_7vkl0"]
+[ext_resource type="Script" path="res://Scripts/mainmenu_planet.gd" id="4_1pd3a"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j0tl4"]
+render_priority = 0
+shader = ExtResource("1_oksl0")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uktsf"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_j0tl4")
+shader = ExtResource("2_ktxwe")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/specular = Color(0.3, 0.3, 0.3, 0.5)
+shader_parameter/fresnel = Color(0.2, 0.2, 0.2, 0.3)
+shader_parameter/base_texture = ExtResource("3_7vkl0")
+shader_parameter/specular_texture = ExtResource("3_7vkl0")
+shader_parameter/fresnel_texture = ExtResource("3_7vkl0")
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+
+[sub_resource type="SphereMesh" id="SphereMesh_qttf0"]
+material = SubResource("ShaderMaterial_uktsf")
+radius = 600.0
+height = 1200.0
+
+[node name="isoth_planet" type="Node3D"]
+
+[node name="isoth" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15000, 0, 0)
+mesh = SubResource("SphereMesh_qttf0")
+script = ExtResource("4_1pd3a")
+y_spin_speed = 2.5
+rotation_speed = 0.5

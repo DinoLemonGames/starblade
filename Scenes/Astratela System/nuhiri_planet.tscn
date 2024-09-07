@@ -1,0 +1,35 @@
+[gd_scene load_steps=8 format=3 uid="uid://drrepaqjji3fh"]
+
+[ext_resource type="Shader" path="res://src/outline.gdshader" id="1_kp2eo"]
+[ext_resource type="Shader" path="res://src/cel-shader-base.gdshader" id="2_3kvif"]
+[ext_resource type="Texture2D" uid="uid://dgsuas2poo00b" path="res://Scenes/Astratela System/nuhiri_texture1.jpg" id="3_10hyq"]
+[ext_resource type="Script" path="res://Scripts/mainmenu_planet.gd" id="4_jifgh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j0tl4"]
+render_priority = 0
+shader = ExtResource("1_kp2eo")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uktsf"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_j0tl4")
+shader = ExtResource("2_3kvif")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/specular = Color(0.3, 0.3, 0.3, 0.5)
+shader_parameter/fresnel = Color(0.2, 0.2, 0.2, 0.3)
+shader_parameter/base_texture = ExtResource("3_10hyq")
+shader_parameter/specular_texture = ExtResource("3_10hyq")
+shader_parameter/fresnel_texture = ExtResource("3_10hyq")
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+
+[sub_resource type="SphereMesh" id="SphereMesh_qttf0"]
+material = SubResource("ShaderMaterial_uktsf")
+radius = 550.0
+height = 1100.0
+
+[node name="nuhiri_planet" type="Node3D"]
+
+[node name="nuhiri" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.823049, 0.295491, 0.485052, -0.161255, 0.940438, -0.299287, -0.544598, 0.168111, 0.821676, 2500, 0, 0)
+mesh = SubResource("SphereMesh_qttf0")
+script = ExtResource("4_jifgh")

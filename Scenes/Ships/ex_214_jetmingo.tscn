@@ -1,0 +1,28 @@
+[gd_scene load_steps=7 format=3 uid="uid://dbty64c8d6wcq"]
+
+[ext_resource type="PackedScene" uid="uid://ddr7s2p0wowax" path="res://Models/EX-214.gltf" id="1_ftwp5"]
+[ext_resource type="Shader" path="res://src/outline.gdshader" id="2_jva3i"]
+[ext_resource type="Shader" path="res://src/cel-shader-base.gdshader" id="3_15wut"]
+[ext_resource type="Texture2D" uid="uid://omeytt8qc3yo" path="res://Textures/Ships/EX-214/EX-214_jetmingo_texture.png" id="4_84g5v"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iwtrn"]
+render_priority = 0
+shader = ExtResource("2_jva3i")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2oylv"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_iwtrn")
+shader = ExtResource("3_15wut")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/specular = Color(0.301961, 0.301961, 0.301961, 0)
+shader_parameter/fresnel = Color(0.2, 0.2, 0.2, 0)
+shader_parameter/base_texture = ExtResource("4_84g5v")
+shader_parameter/specular_texture = ExtResource("4_84g5v")
+shader_parameter/fresnel_texture = ExtResource("4_84g5v")
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+
+[node name="EX-214_jetmingo" instance=ExtResource("1_ftwp5")]
+
+[node name="EX-213" parent="Node" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_2oylv")

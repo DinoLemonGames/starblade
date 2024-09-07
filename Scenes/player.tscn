@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://gccxfyv33unh"]
 
 [ext_resource type="Script" path="res://Scripts/character_body_3d.gd" id="1_wr6lr"]
-[ext_resource type="PackedScene" uid="uid://bvadkcftlq8nf" path="res://Scenes/ex_213_new.tscn" id="2_7p6cu"]
+[ext_resource type="PackedScene" uid="uid://cufslergvtpnn" path="res://Scenes/Ships/ex_214.tscn" id="2_qyosp"]
 [ext_resource type="Script" path="res://Scripts/ex_214.gd" id="3_nhvuv"]
-[ext_resource type="Texture2D" uid="uid://crc680hb50bau" path="res://Textures/recticle1.png" id="3_t05t0"]
-[ext_resource type="Texture2D" uid="uid://dtpfm2w317kcm" path="res://Textures/recticle2.png" id="4_kxuqt"]
+[ext_resource type="Texture2D" uid="uid://crc680hb50bau" path="res://Textures/Ships/EX-214/recticle1.png" id="3_t05t0"]
+[ext_resource type="Texture2D" uid="uid://dtpfm2w317kcm" path="res://Textures/Ships/EX-214/recticle2.png" id="4_kxuqt"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i6k78"]
 size = Vector3(3.35599, 1.60815, 3.86841)
@@ -23,7 +23,7 @@ shape = SubResource("BoxShape3D_i6k78")
 
 [node name="ShipOrigin" type="Node3D" parent="CharacterBody3D/CollisionShape"]
 
-[node name="EX-214" parent="CharacterBody3D/CollisionShape/ShipOrigin" instance=ExtResource("2_7p6cu")]
+[node name="EX-214" parent="CharacterBody3D/CollisionShape/ShipOrigin" instance=ExtResource("2_qyosp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.249, 1.049)
 script = ExtResource("3_nhvuv")
 

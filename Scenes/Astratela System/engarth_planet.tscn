@@ -1,0 +1,44 @@
+[gd_scene load_steps=10 format=3 uid="uid://dj0y13fmiokvu"]
+
+[ext_resource type="Shader" path="res://src/outline.gdshader" id="1_2wb0a"]
+[ext_resource type="Shader" path="res://src/cel-shader-base.gdshader" id="2_35518"]
+[ext_resource type="Texture2D" uid="uid://cfi4vd0ctyys7" path="res://Scenes/Astratela System/engarth_texture1.jpg" id="3_um1vw"]
+[ext_resource type="PackedScene" uid="uid://bxnf82fop7b8" path="res://Scenes/Astratela System/tenebris_moon.tscn" id="4_l0huh"]
+[ext_resource type="Script" path="res://Scripts/mainmenu_planet.gd" id="4_tycuh"]
+[ext_resource type="PackedScene" uid="uid://bmefcjhjhb0up" path="res://Scenes/Astratela System/chichim2_moon.tscn" id="6_lo3im"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j0tl4"]
+render_priority = 0
+shader = ExtResource("1_2wb0a")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lte7e"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_j0tl4")
+shader = ExtResource("2_35518")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/specular = Color(0.3, 0.3, 0.3, 0.5)
+shader_parameter/fresnel = Color(0.2, 0.2, 0.2, 0.3)
+shader_parameter/base_texture = ExtResource("3_um1vw")
+shader_parameter/specular_texture = ExtResource("3_um1vw")
+shader_parameter/fresnel_texture = ExtResource("3_um1vw")
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+
+[sub_resource type="SphereMesh" id="SphereMesh_qttf0"]
+material = SubResource("ShaderMaterial_lte7e")
+radius = 600.0
+height = 1200.0
+
+[node name="engarth_planet" type="Node3D"]
+
+[node name="engarth" type="MeshInstance3D" parent="." groups=["engarth_planet"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11000, 0, 0)
+mesh = SubResource("SphereMesh_qttf0")
+script = ExtResource("4_tycuh")
+rotation_speed = 1.0
+
+[node name="tenebris_moon" parent="engarth" instance=ExtResource("4_l0huh")]
+transform = Transform3D(-0.99741, 0, -0.0719326, 0, 1, 0, 0.0719326, 0, -0.99741, 210.912, 0, 0)
+
+[node name="chichim2_moon" parent="engarth" instance=ExtResource("6_lo3im")]
+transform = Transform3D(0.474134, 0, 0.880453, 0, 1, 0, -0.880453, 0, 0.474134, -356.554, 0, 0)

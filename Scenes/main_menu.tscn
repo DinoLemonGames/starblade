@@ -1,0 +1,180 @@
+[gd_scene load_steps=23 format=3 uid="uid://bnkdbekv6x4mf"]
+
+[ext_resource type="Texture2D" uid="uid://djub3kc76kff3" path="res://Textures/Panos/XylarisPano.png" id="1_qs1br"]
+[ext_resource type="PackedScene" uid="uid://ojurelpgurkt" path="res://Scenes/Astratela System/Suns/red_sun.tscn" id="2_iyclj"]
+[ext_resource type="PackedScene" uid="uid://bxnf82fop7b8" path="res://Scenes/Astratela System/tenebris_moon.tscn" id="3_aoxa5"]
+[ext_resource type="PackedScene" uid="uid://drrepaqjji3fh" path="res://Scenes/Astratela System/nuhiri_planet.tscn" id="3_on8vm"]
+[ext_resource type="PackedScene" uid="uid://b2cd32d5cysfo" path="res://Scenes/Astratela System/tathonemons_planet.tscn" id="4_cki65"]
+[ext_resource type="Shader" path="res://src/outline.gdshader" id="5_ages0"]
+[ext_resource type="Shader" path="res://src/cel-shader-base.gdshader" id="6_bn1tt"]
+[ext_resource type="Texture2D" uid="uid://cfi4vd0ctyys7" path="res://Scenes/Astratela System/engarth_texture1.jpg" id="7_frjla"]
+[ext_resource type="Script" path="res://Scripts/mainmenu_planet.gd" id="8_66yfh"]
+[ext_resource type="PackedScene" uid="uid://bmefcjhjhb0up" path="res://Scenes/Astratela System/chichim2_moon.tscn" id="8_kvxmg"]
+[ext_resource type="PackedScene" uid="uid://8c7it1ho7nwa" path="res://Scenes/Astratela System/isoth_planet.tscn" id="9_60jxc"]
+[ext_resource type="ArrayMesh" uid="uid://ddcvugsl05a6d" path="res://Models/asteroid.obj" id="9_t0ei1"]
+[ext_resource type="Script" path="res://Scenes/menu.gd" id="10_b3qio"]
+[ext_resource type="PackedScene" uid="uid://ck2j2sr63k8xe" path="res://Scenes/Astratela System/eunov_planet.tscn" id="10_y5qim"]
+[ext_resource type="FontFile" uid="uid://bc37ecr7ouf23" path="res://Fonts/GiantRobotsItalic-1GvaM.ttf" id="11_dhfj1"]
+[ext_resource type="PackedScene" uid="uid://wpeeupcdln4j" path="res://Scenes/Astratela System/voira_planet.tscn" id="11_m2l67"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ncita"]
+panorama = ExtResource("1_qs1br")
+
+[sub_resource type="Sky" id="Sky_1mub4"]
+sky_material = SubResource("PanoramaSkyMaterial_ncita")
+
+[sub_resource type="Environment" id="Environment_86jka"]
+background_mode = 2
+background_energy_multiplier = 0.8
+sky = SubResource("Sky_1mub4")
+glow_enabled = true
+glow_bloom = 0.2
+glow_blend_mode = 1
+adjustment_enabled = true
+adjustment_brightness = 1.05
+adjustment_contrast = 1.05
+adjustment_saturation = 1.3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_540mp"]
+render_priority = 0
+shader = ExtResource("5_ages0")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uktsf"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_540mp")
+shader = ExtResource("6_bn1tt")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/specular = Color(0.3, 0.3, 0.3, 0.5)
+shader_parameter/fresnel = Color(0.2, 0.2, 0.2, 0.3)
+shader_parameter/base_texture = ExtResource("7_frjla")
+shader_parameter/specular_texture = ExtResource("7_frjla")
+shader_parameter/fresnel_texture = ExtResource("7_frjla")
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+
+[sub_resource type="SphereMesh" id="SphereMesh_ue2bl"]
+material = SubResource("ShaderMaterial_uktsf")
+radius = 600.0
+height = 1200.0
+
+[node name="MainMenu" type="Node3D"]
+
+[node name="SpaceEnvionment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_86jka")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1892.65, 0)
+fov = 90.0
+far = 80000.0
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 93.4319, 0)
+omni_range = 80000.0
+omni_attenuation = 0.06
+
+[node name="RedSun" parent="." instance=ExtResource("2_iyclj")]
+transform = Transform3D(0.06, 0, 0, 0, 0.06, 0, 0, 0, 0.06, 0, 0, 0)
+
+[node name="nuhiri_body" parent="RedSun" instance=ExtResource("3_on8vm")]
+transform = Transform3D(0.896191, -0.175046, 0.407677, 0.1917, 0.981454, 0, -0.400116, 0.0781516, 0.913126, 406.125, 0, 0)
+
+[node name="tathonemons_planet" parent="RedSun" instance=ExtResource("4_cki65")]
+transform = Transform3D(-0.161966, 0, 0.986797, 0, 1, 0, -0.986797, 0, -0.161966, -171.375, 0, 0)
+
+[node name="engarth_planet" type="Node3D" parent="RedSun"]
+
+[node name="engarth" type="MeshInstance3D" parent="RedSun/engarth_planet"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11000, 0, 0)
+mesh = SubResource("SphereMesh_ue2bl")
+skeleton = NodePath("../..")
+script = ExtResource("8_66yfh")
+rotation_speed = 1.0
+
+[node name="tenebris_moon" parent="RedSun/engarth_planet/engarth" instance=ExtResource("3_aoxa5")]
+transform = Transform3D(-0.99741, 0, -0.0719326, 0, 1, 0, 0.0719326, 0, -0.99741, 210.912, 0, 0)
+
+[node name="chichim2_moon" parent="RedSun/engarth_planet/engarth" instance=ExtResource("8_kvxmg")]
+transform = Transform3D(0.474134, 0, 0.880453, 0, 1, 0, -0.880453, 0, 0.474134, -356.554, 0, 0)
+
+[node name="isoth_planet" parent="RedSun" instance=ExtResource("9_60jxc")]
+transform = Transform3D(-0.291537, 0, -0.95656, 0, 1, 0, 0.95656, 0, -0.291537, 0, 0, 0)
+
+[node name="eunov_planet" parent="RedSun" instance=ExtResource("10_y5qim")]
+transform = Transform3D(0.9826, 0, 0.185735, 0, 1, 0, -0.185735, 0, 0.9826, 0, 0, 0)
+
+[node name="voira_planet" parent="RedSun" instance=ExtResource("11_m2l67")]
+transform = Transform3D(-0.0210646, 0, 0.999778, 0, 1, 0, -0.999778, 0, -0.0210646, 0, 0, 0)
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="RedSun"]
+transform = Transform3D(0.799779, 0, 0.600295, 0, 1, 0, -0.600295, 0, 0.799779, 0, 0, 0)
+amount = 1800
+lifetime = 100000.0
+one_shot = true
+explosiveness = 1.0
+mesh = ExtResource("9_t0ei1")
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 800.0
+emission_ring_radius = 22000.0
+emission_ring_inner_radius = 17000.0
+spread = 171.0
+gravity = Vector3(0, 0, 0)
+scale_amount_min = 0.5
+scale_amount_max = 3.0
+color = Color(0.36, 0.17988, 0.0756, 1)
+hue_variation_min = -0.18
+hue_variation_max = 0.11
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = -1
+anchor_left = 0.014
+anchor_top = 1.025
+anchor_right = 0.014
+anchor_bottom = 1.025
+offset_left = 19.0
+offset_top = -213.2
+offset_right = 337.0
+offset_bottom = -56.0
+grow_vertical = 0
+script = ExtResource("10_b3qio")
+
+[node name="New Game" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(1, 0.768833, 0.27, 1)
+theme_override_colors/font_outline_color = Color(0.0495325, 0.059601, 0.301592, 1)
+theme_override_constants/outline_size = 30
+theme_override_fonts/font = ExtResource("11_dhfj1")
+theme_override_font_sizes/font_size = 40
+text = "New Game"
+flat = true
+alignment = 0
+
+[node name="Load" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(1, 0.768833, 0.27, 1)
+theme_override_colors/font_outline_color = Color(0.0495325, 0.059601, 0.301592, 1)
+theme_override_constants/outline_size = 30
+theme_override_fonts/font = ExtResource("11_dhfj1")
+theme_override_font_sizes/font_size = 40
+text = "Load Game"
+flat = true
+alignment = 0
+
+[node name="Quit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(1, 0.768833, 0.27, 1)
+theme_override_colors/font_outline_color = Color(0.0495325, 0.059601, 0.301592, 1)
+theme_override_constants/outline_size = 30
+theme_override_fonts/font = ExtResource("11_dhfj1")
+theme_override_font_sizes/font_size = 40
+text = "Quit
+"
+flat = true
+alignment = 0
+
+[node name="NewGameTimer" type="Timer" parent="VBoxContainer"]
+wait_time = 2.0
+
+[connection signal="pressed" from="VBoxContainer/New Game" to="VBoxContainer" method="_on_new_game_pressed"]
+[connection signal="pressed" from="VBoxContainer/Quit" to="VBoxContainer" method="_on_quit_pressed"]
+[connection signal="timeout" from="VBoxContainer/NewGameTimer" to="VBoxContainer" method="_on_new_game_timer_timeout"]

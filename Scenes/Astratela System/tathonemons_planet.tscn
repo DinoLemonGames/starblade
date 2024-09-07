@@ -1,0 +1,40 @@
+[gd_scene load_steps=9 format=3 uid="uid://b2cd32d5cysfo"]
+
+[ext_resource type="Shader" path="res://src/outline.gdshader" id="1_j2cad"]
+[ext_resource type="Shader" path="res://src/cel-shader-base.gdshader" id="2_w5f62"]
+[ext_resource type="Texture2D" uid="uid://b7dolha5kd263" path="res://Scenes/Astratela System/tathonemons_texture1.png" id="3_jke7p"]
+[ext_resource type="Script" path="res://Scripts/mainmenu_planet.gd" id="4_mi6tg"]
+[ext_resource type="PackedScene" uid="uid://bjun7eqvwylkt" path="res://Scenes/Astratela System/arone_moon.tscn" id="4_nhqu1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j0tl4"]
+render_priority = 0
+shader = ExtResource("1_j2cad")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uktsf"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_j0tl4")
+shader = ExtResource("2_w5f62")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/specular = Color(0.3, 0.3, 0.3, 0.5)
+shader_parameter/fresnel = Color(0.2, 0.2, 0.2, 0.3)
+shader_parameter/base_texture = ExtResource("3_jke7p")
+shader_parameter/specular_texture = ExtResource("3_jke7p")
+shader_parameter/fresnel_texture = ExtResource("3_jke7p")
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+
+[sub_resource type="SphereMesh" id="SphereMesh_qttf0"]
+material = SubResource("ShaderMaterial_uktsf")
+radius = 400.0
+height = 800.0
+
+[node name="tathonemons_planet" type="Node3D"]
+
+[node name="tathonemons" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6000, 0, 0)
+mesh = SubResource("SphereMesh_qttf0")
+script = ExtResource("4_mi6tg")
+y_spin_speed = 2.0
+rotation_speed = 2.5
+
+[node name="arone_moon" parent="tathonemons" instance=ExtResource("4_nhqu1")]

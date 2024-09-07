@@ -1,0 +1,50 @@
+[gd_scene load_steps=9 format=3 uid="uid://d4gu2dbd74g00"]
+
+[ext_resource type="PackedScene" uid="uid://cg7eygdlu0tt0" path="res://Models/asteroid.gltf" id="1_2mer7"]
+[ext_resource type="Shader" path="res://src/outline.gdshader" id="2_nfh78"]
+[ext_resource type="Shader" path="res://src/cel-shader-base.gdshader" id="3_s85qa"]
+[ext_resource type="Texture2D" uid="uid://dnpbcn3vfe57i" path="res://Textures/rock2_texture.png" id="4_5ljer"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0hp7o"]
+render_priority = 0
+shader = ExtResource("2_nfh78")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0qfnb"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_0hp7o")
+shader = ExtResource("3_s85qa")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/specular = Color(0.3, 0.3, 0.3, 0)
+shader_parameter/fresnel = Color(0.2, 0.2, 0.2, 0)
+shader_parameter/base_texture = ExtResource("4_5ljer")
+shader_parameter/specular_texture = ExtResource("4_5ljer")
+shader_parameter/fresnel_texture = ExtResource("4_5ljer")
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c4sx3"]
+render_priority = 0
+shader = ExtResource("2_nfh78")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xu62d"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_c4sx3")
+shader = ExtResource("3_s85qa")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/specular = Color(0.3, 0.3, 0.3, 0)
+shader_parameter/fresnel = Color(0.2, 0.2, 0.2, 0)
+shader_parameter/base_texture = ExtResource("4_5ljer")
+shader_parameter/specular_texture = ExtResource("4_5ljer")
+shader_parameter/fresnel_texture = ExtResource("4_5ljer")
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+
+[node name="blockbench_export" instance=ExtResource("1_2mer7")]
+
+[node name="beveled_cuboid" parent="Node" index="0"]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
+surface_material_override/0 = SubResource("ShaderMaterial_0qfnb")
+
+[node name="beveled_cuboid2" parent="Node" index="1"]
+transform = Transform3D(11.7342, -49.6991, 85.9785, 67.8742, 67.2132, 29.5886, -72.4941, 54.8853, 41.6198, 1.375, 0.8125, -1.0625)
+surface_material_override/0 = SubResource("ShaderMaterial_xu62d")

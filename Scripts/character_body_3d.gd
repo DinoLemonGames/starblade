@@ -110,9 +110,9 @@ func _physics_process(delta):
 	
 	# Make the camera follow the ship
 	# Left and Right
-	camera.position.x = lerp(player.position.x, (player.position.x + position.x)-1.5, 0.75)
+	camera.position.x = lerp(player.position.x, (player.position.x + position.x), 0.75)
 	# Up and Down
-	camera.position.y = lerp(player.position.y, (player.position.y + position.y)+3.5, 0.75)
+	camera.position.y = lerp(player.position.y, (player.position.y + position.y)+4, 0.75)
 	camera.position.y = clamp(camera.position.y, player.position.y -15, 25)
 	
 	# Make the camera look at the ship

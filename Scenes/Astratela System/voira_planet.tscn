@@ -1,0 +1,36 @@
+[gd_scene load_steps=8 format=3 uid="uid://wpeeupcdln4j"]
+
+[ext_resource type="Shader" path="res://src/outline.gdshader" id="1_qehpm"]
+[ext_resource type="Shader" path="res://src/cel-shader-base.gdshader" id="2_6icr1"]
+[ext_resource type="Texture2D" uid="uid://c8tlkcsumvhkc" path="res://Scenes/Astratela System/voira_texture1.png" id="3_4s263"]
+[ext_resource type="Script" path="res://Scripts/mainmenu_planet.gd" id="4_diofw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ao8qk"]
+render_priority = 0
+shader = ExtResource("1_qehpm")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h8qmr"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_ao8qk")
+shader = ExtResource("2_6icr1")
+shader_parameter/color = Color(0.634206, 0.0830692, 0.782277, 1)
+shader_parameter/specular = Color(0.3, 0.3, 0.3, 0.5)
+shader_parameter/fresnel = Color(0.2, 0.2, 0.2, 0.3)
+shader_parameter/base_texture = ExtResource("3_4s263")
+shader_parameter/specular_texture = ExtResource("3_4s263")
+shader_parameter/fresnel_texture = ExtResource("3_4s263")
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+
+[sub_resource type="SphereMesh" id="SphereMesh_8mc0g"]
+material = SubResource("ShaderMaterial_h8qmr")
+radius = 650.0
+height = 1300.0
+
+[node name="voira_planet" type="Node3D"]
+
+[node name="voira" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.149814, -0.461081, 0.87462, 0.951057, 0.309017, 0, -0.270272, 0.831813, 0.48481, 28000, 0, 0)
+mesh = SubResource("SphereMesh_8mc0g")
+script = ExtResource("4_diofw")
+rotation_speed = 0.3

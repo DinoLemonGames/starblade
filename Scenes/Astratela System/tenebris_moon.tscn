@@ -1,0 +1,35 @@
+[gd_scene load_steps=8 format=3 uid="uid://bxnf82fop7b8"]
+
+[ext_resource type="Shader" path="res://src/outline.gdshader" id="1_70eih"]
+[ext_resource type="Texture2D" uid="uid://dqnmxeu5moxao" path="res://Textures/TCom_Ground_CliffEarth_header.jpg" id="1_jhi2i"]
+[ext_resource type="Shader" path="res://src/cel-shader-base.gdshader" id="2_msu4t"]
+[ext_resource type="Script" path="res://Scripts/mainmenu_planet.gd" id="4_au6ac"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ao8qk"]
+render_priority = 0
+shader = ExtResource("1_70eih")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h8qmr"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_ao8qk")
+shader = ExtResource("2_msu4t")
+shader_parameter/color = Color(0.898472, 0.655055, 0.985384, 1)
+shader_parameter/specular = Color(0.3, 0.3, 0.3, 0.5)
+shader_parameter/fresnel = Color(0.2, 0.2, 0.2, 0.3)
+shader_parameter/base_texture = ExtResource("1_jhi2i")
+shader_parameter/specular_texture = ExtResource("1_jhi2i")
+shader_parameter/fresnel_texture = ExtResource("1_jhi2i")
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+
+[sub_resource type="SphereMesh" id="SphereMesh_8mc0g"]
+material = SubResource("ShaderMaterial_h8qmr")
+radius = 150.0
+height = 300.0
+
+[node name="tenebris_moon" type="Node3D"]
+
+[node name="tenebris" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.149814, -0.461081, 0.87462, 0.951057, 0.309017, 0, -0.270272, 0.831813, 0.48481, 1100, 0, 0)
+mesh = SubResource("SphereMesh_8mc0g")
+script = ExtResource("4_au6ac")
