@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bnkdbekv6x4mf"]
+[gd_scene load_steps=22 format=3 uid="uid://202l5s1m0j6"]
 
 [ext_resource type="Texture2D" uid="uid://djub3kc76kff3" path="res://Textures/Panos/XylarisPano.png" id="1_qs1br"]
 [ext_resource type="PackedScene" uid="uid://ojurelpgurkt" path="res://Scenes/Astratela System/Suns/red_sun.tscn" id="2_iyclj"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://b2cd32d5cysfo" path="res://Scenes/Astratela System/tathonemons_planet.tscn" id="4_cki65"]
 [ext_resource type="Shader" path="res://src/outline.gdshader" id="5_ages0"]
 [ext_resource type="Shader" path="res://src/cel-shader-base.gdshader" id="6_bn1tt"]
-[ext_resource type="Texture2D" uid="uid://cfi4vd0ctyys7" path="res://Scenes/Astratela System/engarth_texture1.jpg" id="7_frjla"]
 [ext_resource type="Script" path="res://Scripts/mainmenu_planet.gd" id="8_66yfh"]
 [ext_resource type="PackedScene" uid="uid://bmefcjhjhb0up" path="res://Scenes/Astratela System/chichim2_moon.tscn" id="8_kvxmg"]
 [ext_resource type="PackedScene" uid="uid://8c7it1ho7nwa" path="res://Scenes/Astratela System/isoth_planet.tscn" id="9_60jxc"]
@@ -43,14 +42,6 @@ shader = ExtResource("5_ages0")
 render_priority = 0
 next_pass = SubResource("ShaderMaterial_540mp")
 shader = ExtResource("6_bn1tt")
-shader_parameter/color = Color(1, 1, 1, 1)
-shader_parameter/specular = Color(0.3, 0.3, 0.3, 0.5)
-shader_parameter/fresnel = Color(0.2, 0.2, 0.2, 0.3)
-shader_parameter/base_texture = ExtResource("7_frjla")
-shader_parameter/specular_texture = ExtResource("7_frjla")
-shader_parameter/fresnel_texture = ExtResource("7_frjla")
-shader_parameter/uv_scale = Vector2(1, 1)
-shader_parameter/uv_offset = Vector2(0, 0)
 
 [sub_resource type="SphereMesh" id="SphereMesh_ue2bl"]
 material = SubResource("ShaderMaterial_uktsf")
