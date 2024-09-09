@@ -13,14 +13,12 @@ func _process(delta):
 		camera.position.z = lerp(camera.position.z, engarth.global_position.z, 0.005)
 		camera.position.x = lerp(camera.position.x, engarth.global_position.x, 0.005)
 
-func _on_new_game_pressed():
+func _on_play_pressed():
 	new_game = true
 	$NewGameTimer.start()
 
-
-func _on_quit_pressed():
+func _on_exit_pressed():
 	get_tree().quit()
-
 
 func _on_new_game_timer_timeout():
 	get_tree().change_scene_to_packed(ENGARTH)
